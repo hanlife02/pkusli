@@ -5,9 +5,14 @@
   subtitle: none,
   fill: palette.card,
   stroke: 0.9pt + palette.line,
-) = soft-card(
   inset: (x: 0.72em, y: 0.38em),
   height: 3.8em,
+  title-size: 1.48em,
+  title-weight: "bold",
+  title-fill: palette.ink,
+) = soft-card(
+  inset: inset,
+  height: height,
   fill: fill,
   stroke: stroke,
 )[
@@ -15,7 +20,7 @@
     #block(width: 100%, height: 100%)[
       #align(center + horizon)[
         #set text(top-edge: "bounds", bottom-edge: "bounds")
-        #text(size: 1.48em, weight: "bold", fill: palette.ink)[#title]
+        #text(size: title-size, weight: title-weight, fill: title-fill)[#title]
       ]
     ]
   ]
@@ -32,15 +37,20 @@
 #let subject-summary-card(
   body: [],
   height: 2.35em,
-) = soft-card(
   inset: (x: 0.95em, y: 0.58em),
+  text-size: 0.78em,
+  text-fill: palette.muted,
+  text-leading: 0.5em,
+) = soft-card(
+  inset: inset,
   width: 100%,
   height: height,
 )[
   #align(center + horizon)[
     #block(width: 100%)[
       #set align(center)
-      #set text(size: 0.78em, fill: palette.muted)
+      #set text(size: text-size, fill: text-fill)
+      #set par(leading: text-leading)
       #body
     ]
   ]
@@ -55,6 +65,17 @@
   body-gap: 0.58em,
   inner-gap: 0.58em,
   top-card-height: 2.35em,
+  title-card-fill: palette.card,
+  title-card-stroke: 0.9pt + palette.line,
+  title-card-inset: (x: 0.72em, y: 0.38em),
+  title-card-height: 3.8em,
+  title-size: 1.48em,
+  title-weight: "bold",
+  title-fill: palette.ink,
+  summary-card-inset: (x: 0.95em, y: 0.58em),
+  top-content-size: 0.78em,
+  top-content-fill: palette.muted,
+  top-content-leading: 0.5em,
 ) = subject-slide(
   title: auto,
   content: [
@@ -65,7 +86,17 @@
         [
           #if title != none or subtitle != none [
             #block(width: 100%, inset: (left: header-left-offset))[
-              #subject-title-card(title: title, subtitle: subtitle)
+              #subject-title-card(
+                title: title,
+                subtitle: subtitle,
+                fill: title-card-fill,
+                stroke: title-card-stroke,
+                inset: title-card-inset,
+                height: title-card-height,
+                title-size: title-size,
+                title-weight: title-weight,
+                title-fill: title-fill,
+              )
             ]
           ]
         ],
@@ -77,6 +108,10 @@
               #subject-summary-card(
                 body: top-content,
                 height: top-card-height,
+                inset: summary-card-inset,
+                text-size: top-content-size,
+                text-fill: top-content-fill,
+                text-leading: top-content-leading,
               )
             ],
             [
@@ -95,12 +130,45 @@
   top-content: [],
   content: [],
   header-left-offset: 0pt,
+  body-gap: 0.58em,
+  inner-gap: 0.58em,
+  top-card-height: 2.35em,
+  title-card-fill: palette.card,
+  title-card-stroke: 0.9pt + palette.line,
+  title-card-inset: (x: 0.72em, y: 0.38em),
+  title-card-height: 3.8em,
+  title-size: 1.48em,
+  title-weight: "bold",
+  title-fill: palette.ink,
+  summary-card-inset: (x: 0.95em, y: 0.58em),
+  top-content-size: 0.78em,
+  top-content-fill: palette.muted,
+  top-content-leading: 0.5em,
+  content-text-size: 0.82em,
+  content-text-fill: palette.ink,
+  content-text-leading: 0.62em,
 ) = subject-shell(
   title: title,
   subtitle: subtitle,
   top-content: top-content,
   header-left-offset: header-left-offset,
+  body-gap: body-gap,
+  inner-gap: inner-gap,
+  top-card-height: top-card-height,
+  title-card-fill: title-card-fill,
+  title-card-stroke: title-card-stroke,
+  title-card-inset: title-card-inset,
+  title-card-height: title-card-height,
+  title-size: title-size,
+  title-weight: title-weight,
+  title-fill: title-fill,
+  summary-card-inset: summary-card-inset,
+  top-content-size: top-content-size,
+  top-content-fill: top-content-fill,
+  top-content-leading: top-content-leading,
   body: [
+    #set text(size: content-text-size, fill: content-text-fill)
+    #set par(leading: content-text-leading)
     #content
   ],
 )

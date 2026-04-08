@@ -1,9 +1,29 @@
 #import "@preview/touying:0.6.1": *
 #import "../shared/base.typ": page-background, palette
 
-#let cover-slide(..args) = touying-slide-wrapper(self => {
-  let info = self.info + args.named()
-
+#let cover-slide(
+  title: none,
+  subtitle: none,
+  author: none,
+  institution: none,
+  date: none,
+  title-size: 2.5em,
+  subtitle-size: 1.28em,
+  author-size: 1.2em,
+  meta-size: 1em,
+  title-fill: palette.ink,
+  subtitle-fill: palette.primary,
+  author-fill: palette.primary,
+  meta-fill: palette.muted,
+  content-width: 88%,
+  content-inset: (x: 0.4em, y: 0.2em),
+  subtitle-gap: 0.32em,
+  title-line-gap: 0.1em,
+  line-width: 38%,
+  line-stroke: 1.1pt + palette.line,
+  line-author-gap: 0.2em,
+  meta-gap: 0.16em,
+) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
     self,
     config-page(
@@ -17,26 +37,26 @@
   touying-slide(
     self: self,
     align(center + horizon)[
-      #block(width: 88%, inset: (x: 0.4em, y: 0.2em))[
+      #block(width: content-width, inset: content-inset)[
         #set align(center + horizon)
-        #text(size: 2.5em, weight: "bold", fill: palette.ink)[#info.title]
-        #if info.subtitle != none [
-          #v(0.32em)
-          #text(size: 1.28em, fill: palette.primary)[#info.subtitle]
+        #text(size: title-size, weight: "bold", fill: title-fill)[#title]
+        #if subtitle != none [
+          #v(subtitle-gap)
+          #text(size: subtitle-size, fill: subtitle-fill)[#subtitle]
         ]
-        #v(0.1em)
-        #line(length: 38%, stroke: 1.1pt + palette.line)
-        #v(0.2em)
-        #if info.author != none [
-          #text(size: 1.2em, weight: "bold", fill: palette.primary)[#info.author]
+        #v(title-line-gap)
+        #line(length: line-width, stroke: line-stroke)
+        #v(line-author-gap)
+        #if author != none [
+          #text(size: author-size, weight: "bold", fill: author-fill)[#author]
         ]
-        #if info.institution != none [
-          #v(0.16em)
-          #text(size: 1.0em, fill: palette.muted)[#info.institution]
+        #if institution != none [
+          #v(meta-gap)
+          #text(size: meta-size, fill: meta-fill)[#institution]
         ]
-        #if info.date != none [
-          #v(0.16em)
-          #text(size: 1.0em, fill: palette.muted)[#info.date]
+        #if date != none [
+          #v(meta-gap)
+          #text(size: meta-size, fill: meta-fill)[#date]
         ]
       ]
     ],

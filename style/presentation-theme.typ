@@ -8,7 +8,7 @@
   ..args,
   body,
 ) = {
-  set text(font: ("Songti SC", "STSong", "Source Han Serif SC", "Noto Serif CJK SC", "Avenir Next", "Helvetica Neue"), size: 15.5pt)
+  set text(font: ("Songti SC", "STSong", "Avenir Next", "Helvetica Neue"), size: 15.5pt)
   set par(justify: false, leading: 0.5em)
   set list(marker: ([•], [◦], [▪]))
   show strong: it => text(weight: "bold", fill: palette.primary)[#it.body]

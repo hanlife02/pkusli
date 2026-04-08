@@ -10,12 +10,15 @@
   column-gap: 1.05em,
   image-max-width: 96%,
   image-max-height: 88%,
+  text-size: 0.9em,
+  text-fill: palette.ink,
+  text-leading: 0.62em,
 ) = block(width: 100%, height: 100%)[
   #let text-column = [
     #block(width: 100%, height: 100%)[
       #align(left + horizon)[
-        #set text(size: 0.82em, fill: palette.ink)
-        #set par(leading: 0.62em)
+        #set text(size: text-size, fill: text-fill)
+        #set par(leading: text-leading)
         #text-body
       ]
     ]
@@ -59,11 +62,42 @@
   image-width: 1fr,
   image-max-width: 96%,
   image-max-height: 88%,
+  text-size: 0.9em,
+  text-fill: palette.ink,
+  text-leading: 0.62em,
+  body-gap: 0.58em,
+  inner-gap: 0.58em,
+  top-card-height: 2.35em,
+  title-card-fill: palette.card,
+  title-card-stroke: 0.9pt + palette.line,
+  title-card-inset: (x: 0.72em, y: 0.38em),
+  title-card-height: 3.8em,
+  title-size: 1.48em,
+  title-weight: "bold",
+  title-fill: palette.ink,
+  summary-card-inset: (x: 0.95em, y: 0.58em),
+  top-content-size: 0.78em,
+  top-content-fill: palette.muted,
+  top-content-leading: 0.5em,
 ) = subject-shell(
   title: title,
   subtitle: subtitle,
   top-content: top-content,
   header-left-offset: header-left-offset,
+  body-gap: body-gap,
+  inner-gap: inner-gap,
+  top-card-height: top-card-height,
+  title-card-fill: title-card-fill,
+  title-card-stroke: title-card-stroke,
+  title-card-inset: title-card-inset,
+  title-card-height: title-card-height,
+  title-size: title-size,
+  title-weight: title-weight,
+  title-fill: title-fill,
+  summary-card-inset: summary-card-inset,
+  top-content-size: top-content-size,
+  top-content-fill: top-content-fill,
+  top-content-leading: top-content-leading,
   body: [
     #text-image-layout(
       ..image-args,
@@ -74,6 +108,9 @@
       column-gap: column-gap,
       image-max-width: image-max-width,
       image-max-height: image-max-height,
+      text-size: text-size,
+      text-fill: text-fill,
+      text-leading: text-leading,
     )
   ],
 )

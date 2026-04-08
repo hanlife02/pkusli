@@ -17,6 +17,21 @@
   right-card-dy: 0pt,
   left-card-fill: white.transparentize(6%),
   right-card-fill: white.transparentize(6%),
+  marker-size: 4.2em,
+  marker-fill: palette.ink.transparentize(28%),
+  number-size: 3.1em,
+  number-fill: palette.primary,
+  part-label-size: 0.78em,
+  part-label-fill: palette.muted,
+  part-label-tracking: 0.16em,
+  part-label-gap: 0.36em,
+  title-size: 2.45em,
+  title-fill: palette.ink,
+  title-leading: 0.72em,
+  description-size: 1.02em,
+  description-fill: palette.muted,
+  description-width: 84%,
+  description-gap: 0.38em,
 ) = subject-slide(
   title: auto,
   content: [
@@ -40,9 +55,18 @@
                   #block(width: 100%, height: 100%)[
                     #align(center + horizon)[
                       #set align(center + horizon)
-                      #text(size: 4.2em, weight: "bold", fill: palette.ink.transparentize(28%))[#marker]
+                      #if part-label != none [
+                        #text(
+                          size: part-label-size,
+                          weight: "bold",
+                          fill: part-label-fill,
+                          tracking: part-label-tracking,
+                        )[#part-label]
+                        #v(part-label-gap)
+                      ]
+                      #text(size: marker-size, weight: "bold", fill: marker-fill)[#marker]
                       #v(-0.02em)
-                      #text(size: 3.1em, weight: "bold", fill: palette.primary)[#number]
+                      #text(size: number-size, weight: "bold", fill: number-fill)[#number]
                     ]
                   ]
                 ],
@@ -63,12 +87,12 @@
                 )[
                   #block(width: 100%, height: 100%)[
                     #align(left + horizon)[
-                      #set par(leading: 0.72em)
-                      #text(size: 2.45em, weight: "bold", fill: palette.ink)[#title]
+                      #set par(leading: title-leading)
+                      #text(size: title-size, weight: "bold", fill: title-fill)[#title]
                       #if description != none [
-                        #v(0.38em)
-                        #block(width: 84%)[
-                          #set text(size: 1.02em, fill: palette.muted)
+                        #v(description-gap)
+                        #block(width: description-width)[
+                          #set text(size: description-size, fill: description-fill)
                           #description
                         ]
                       ]

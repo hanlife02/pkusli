@@ -34,9 +34,6 @@
   header-left-offset: 10em,
   top-content: [这里可以放一行概述、章节标签或当前页的关键结论。],
   content: [
-    #set text(size: 0.82em, fill: rgb("#2D2523"))
-    #set par(leading: 0.62em)
-
     这一页保留了 subject 模板的基础结构：
 
     - 第一行只保留标题 card。
@@ -56,9 +53,6 @@
   header-left-offset: 10em,
   top-content: [这里可以放一行概述、章节标签或当前页的关键结论。],
   text-body: [
-    #set text(size: 0.82em, fill: rgb("#2D2523"))
-    #set par(leading: 0.62em)
-
     这一页将下方的大矩形拆成了左右两个区域：
 
     - 左侧是文字区域，整体保持上下居中。
