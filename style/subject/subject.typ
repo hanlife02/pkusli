@@ -15,7 +15,7 @@
   radius: 18pt,
   width: 100%,
   height: 100%,
-  fill: white.transparentize(8%),
+  fill: none,
 )[
   #if kicker != none [
     #text(size: 0.56em, weight: "bold", fill: palette.primary, tracking: 0.12em)[#kicker]

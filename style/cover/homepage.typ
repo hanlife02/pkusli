@@ -1,5 +1,5 @@
 #import "@preview/touying:0.6.1": *
-#import "../shared/base.typ": page-background, palette
+#import "../shared/base.typ": page-background, page-footer, palette
 
 #let cover-slide(
   title: none,
@@ -24,18 +24,18 @@
   line-author-gap: 0.2em,
   meta-gap: 0.16em,
 ) = touying-slide-wrapper(self => {
-  self = utils.merge-dicts(
-    self,
+  let config = utils.merge-dicts(
     config-page(
       background: page-background(),
       margin: (top: 1.5em, bottom: 1.5em, x: 1.45em),
       header: self => [],
-      footer: self => [],
+      footer: self => page-footer(self),
     ),
   )
 
   touying-slide(
     self: self,
+    config: config,
     align(center + horizon)[
       #block(width: content-width, inset: content-inset)[
         #set align(center + horizon)

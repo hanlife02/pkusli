@@ -1,11 +1,10 @@
 #import "./subject/subject.typ": palette, subject-slide
 #import "./shared/base.typ": soft-card
 
-#let transition-page(
-  title: none,
-  description: none,
-  number: [01],
-  marker: [PART],
+#let agenda-page(
+  title: [目录],
+  marker: [CONTENT],
+  sections: (),
   left-width: 14.2em,
   column-gap: 1.6em,
   left-card-height: 20em,
@@ -16,17 +15,16 @@
   right-card-dy: 0pt,
   left-card-fill: none,
   right-card-fill: none,
-  marker-size: 4.2em,
-  marker-fill: palette.ink.transparentize(28%),
-  number-size: 3.1em,
-  number-fill: palette.primary,
-  title-size: 2.45em,
+  title-size: 2.35em,
   title-fill: palette.ink,
-  title-leading: 0.72em,
-  description-size: 1.02em,
-  description-fill: palette.muted,
-  description-width: 84%,
-  description-gap: 0.38em,
+  marker-size: 0.96em,
+  marker-fill: palette.primary,
+  marker-tracking: 0.14em,
+  section-size: 1.08em,
+  section-fill: palette.ink,
+  section-muted-fill: palette.muted,
+  section-gap: 0.4em,
+  row-inset: (x: 0.2em, y: 0.55em),
 ) = subject-slide(
   title: auto,
   content: [
@@ -49,10 +47,14 @@
                 )[
                   #block(width: 100%, height: 100%)[
                     #align(center + horizon)[
-                      #set align(center + horizon)
-                      #text(size: marker-size, weight: "bold", fill: marker-fill)[#marker]
-                      #v(-2.32em)
-                      #text(size: number-size, weight: "bold", fill: number-fill)[#number]
+                      #text(size: title-size, weight: "bold", fill: title-fill)[#title]
+                      #v(0.25em)
+                      #text(
+                        size: marker-size,
+                        weight: "bold",
+                        fill: marker-fill,
+                        tracking: marker-tracking,
+                      )[#marker]
                     ]
                   ]
                 ],
@@ -72,16 +74,21 @@
                   fill: right-card-fill,
                 )[
                   #block(width: 100%, height: 100%)[
-                    #align(left + horizon)[
-                      #set par(leading: title-leading)
-                      #text(size: title-size, weight: "bold", fill: title-fill)[#title]
-                      #if description != none [
-                        #v(description-gap)
-                        #block(width: description-width)[
-                          #set text(size: description-size, fill: description-fill)
-                          #description
-                        ]
+                    #set text(size: section-size, fill: section-fill)
+                    #set par(leading: 0.68em)
+                    #for section in sections [
+                      #block(width: 100%, inset: row-inset)[
+                        #section
                       ]
+                      #if section != sections.last() [
+                        #v(section-gap)
+                        #line(length: 100%, stroke: 1pt + palette.line)
+                        #v(section-gap)
+                      ]
+                    ]
+                    #if sections.len() == 0 [
+                      #set text(fill: section-muted-fill)
+                      [请在 `sections` 中传入目录项。]
                     ]
                   ]
                 ],

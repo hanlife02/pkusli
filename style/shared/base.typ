@@ -7,7 +7,7 @@
   ink: rgb("#2D2523"),
   muted: rgb("#6C5E58"),
   line: rgb("#D8C9C1"),
-  card: white.transparentize(1%),
+  card: none,
 )
 
 #let page-background() = place(
@@ -25,7 +25,7 @@
     stroke: 0.8pt + palette.line,
   )[
     #text(size: 0.62em, weight: "bold", fill: palette.primary)[
-      #counter(page).display()
+      #utils.slide-counter.display()
     ]
   ]
 ]
@@ -33,7 +33,7 @@
 #let soft-card(
   body,
   fill: palette.card,
-  stroke: 0.9pt + palette.line,
+  stroke: none,
   inset: 0.82em,
   radius: 14pt,
   width: 100%,
