@@ -15,7 +15,7 @@
 )
 
 #transition-page(
-  part-label: [第一部分],
+  part-label: none,
   number: [01],
   marker: [PART],
   // 过渡页左右 card 可分别通过 dx / dy 单独微调位置。
@@ -51,6 +51,12 @@
   title: [内容页模板],
   subtitle: [Text + Image Template],
   header-left-offset: 10em,
+  title-card-fill: none,
+  title-card-stroke: none,
+  summary-card-fill: none,
+  summary-card-stroke: none,
+  content-card-fill: none,
+  content-card-stroke: none,
   top-content: [这里可以放一行概述、章节标签或当前页的关键结论。],
   text-body: [
     这一页将下方的大矩形拆成了左右两个区域：

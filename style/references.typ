@@ -91,6 +91,7 @@
               title-size: title-size,
               title-weight: title-weight,
               title-fill: title-fill,
+              page-center-offset: header-left-offset,
             )
           ]
         ],

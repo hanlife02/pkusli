@@ -5,11 +5,12 @@
   subtitle: none,
   fill: palette.card,
   stroke: 0.9pt + palette.line,
-  inset: (x: 0.72em, y: 0.38em),
+  inset: (x: 0.95em, y: 0.38em),
   height: 3.8em,
   title-size: 1.48em,
   title-weight: "bold",
   title-fill: palette.ink,
+  page-center-offset: 0pt,
 ) = soft-card(
   inset: inset,
   height: height,
@@ -18,15 +19,30 @@
 )[
   #if title != none [
     #block(width: 100%, height: 100%)[
-      #align(center + horizon)[
-        #set text(top-edge: "bounds", bottom-edge: "bounds")
-        #text(size: title-size, weight: title-weight, fill: title-fill)[#title]
-      ]
+      #place(
+        center + horizon,
+        dx: -page-center-offset / 2,
+        block(width: 100% - page-center-offset, height: 100%)[
+          #align(center + horizon)[
+            #set text(top-edge: "bounds", bottom-edge: "bounds")
+            #block(width: 100%)[
+              #set align(center)
+              #text(size: title-size, weight: title-weight, fill: title-fill)[#title]
+            ]
+          ]
+        ],
+      )
     ]
   ]
 ]
 
-#let subject-content-card(body) = soft-card(
+#let subject-content-card(
+  body,
+  fill: palette.card,
+  stroke: 0.9pt + palette.line,
+) = soft-card(
+  fill: fill,
+  stroke: stroke,
   inset: 0.95em,
   width: 100%,
   height: 100%,
@@ -37,11 +53,15 @@
 #let subject-summary-card(
   body: [],
   height: 2.35em,
+  fill: palette.card,
+  stroke: 0.9pt + palette.line,
   inset: (x: 0.95em, y: 0.58em),
   text-size: 0.78em,
   text-fill: palette.muted,
   text-leading: 0.5em,
 ) = soft-card(
+  fill: fill,
+  stroke: stroke,
   inset: inset,
   width: 100%,
   height: height,
@@ -67,15 +87,19 @@
   top-card-height: 2.35em,
   title-card-fill: palette.card,
   title-card-stroke: 0.9pt + palette.line,
-  title-card-inset: (x: 0.72em, y: 0.38em),
+  title-card-inset: (x: 0.95em, y: 0.38em),
   title-card-height: 3.8em,
   title-size: 1.48em,
   title-weight: "bold",
   title-fill: palette.ink,
+  summary-card-fill: palette.card,
+  summary-card-stroke: 0.9pt + palette.line,
   summary-card-inset: (x: 0.95em, y: 0.58em),
   top-content-size: 0.78em,
   top-content-fill: palette.muted,
   top-content-leading: 0.5em,
+  content-card-fill: palette.card,
+  content-card-stroke: 0.9pt + palette.line,
 ) = subject-slide(
   title: auto,
   content: [
@@ -96,6 +120,7 @@
                 title-size: title-size,
                 title-weight: title-weight,
                 title-fill: title-fill,
+                page-center-offset: header-left-offset,
               )
             ]
           ]
@@ -108,6 +133,8 @@
               #subject-summary-card(
                 body: top-content,
                 height: top-card-height,
+                fill: summary-card-fill,
+                stroke: summary-card-stroke,
                 inset: summary-card-inset,
                 text-size: top-content-size,
                 text-fill: top-content-fill,
@@ -115,7 +142,10 @@
               )
             ],
             [
-              #subject-content-card[#body]
+              #subject-content-card(
+                fill: content-card-fill,
+                stroke: content-card-stroke,
+              )[#body]
             ],
           )
         ],
@@ -135,15 +165,19 @@
   top-card-height: 2.35em,
   title-card-fill: palette.card,
   title-card-stroke: 0.9pt + palette.line,
-  title-card-inset: (x: 0.72em, y: 0.38em),
+  title-card-inset: (x: 0.95em, y: 0.38em),
   title-card-height: 3.8em,
   title-size: 1.48em,
   title-weight: "bold",
   title-fill: palette.ink,
+  summary-card-fill: palette.card,
+  summary-card-stroke: 0.9pt + palette.line,
   summary-card-inset: (x: 0.95em, y: 0.58em),
   top-content-size: 0.78em,
   top-content-fill: palette.muted,
   top-content-leading: 0.5em,
+  content-card-fill: palette.card,
+  content-card-stroke: 0.9pt + palette.line,
   content-text-size: 0.82em,
   content-text-fill: palette.ink,
   content-text-leading: 0.62em,
@@ -162,10 +196,14 @@
   title-size: title-size,
   title-weight: title-weight,
   title-fill: title-fill,
+  summary-card-fill: summary-card-fill,
+  summary-card-stroke: summary-card-stroke,
   summary-card-inset: summary-card-inset,
   top-content-size: top-content-size,
   top-content-fill: top-content-fill,
   top-content-leading: top-content-leading,
+  content-card-fill: content-card-fill,
+  content-card-stroke: content-card-stroke,
   body: [
     #set text(size: content-text-size, fill: content-text-fill)
     #set par(leading: content-text-leading)

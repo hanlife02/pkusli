@@ -72,7 +72,7 @@
   caption-gap: 0.4em,
   title-card-fill: none,
   title-card-stroke: none,
-  title-card-inset: (x: 0.72em, y: 0.38em),
+  title-card-inset: (x: 0.95em, y: 0.38em),
   title-card-height: 3.8em,
   title-size: 1.48em,
   title-weight: "bold",
@@ -97,6 +97,7 @@
                 title-size: title-size,
                 title-weight: title-weight,
                 title-fill: title-fill,
+                page-center-offset: header-left-offset,
               )
             ]
           ]
