@@ -67,7 +67,7 @@
         [
           #if title != none or subtitle != none [
             #block(width: 100%, inset: (left: header-left-offset))[
-              #subject-title-card(title: title, subtitle: subtitle)
+              #subject-title-card(title: title, subtitle: subtitle, fill: none, stroke: none)
             ]
           ]
         ],
@@ -77,6 +77,7 @@
             width: 100%,
             height: 100%,
             fill: none,
+            stroke: none,
           )[
             #block(width: 100%, height: 100%)[
               #align(center + horizon)[

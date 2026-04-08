@@ -3,9 +3,13 @@
 #let subject-title-card(
   title: none,
   subtitle: none,
+  fill: palette.card,
+  stroke: 0.9pt + palette.line,
 ) = soft-card(
   inset: (x: 0.72em, y: 0.38em),
-  height: 2.8em,
+  height: 3.8em,
+  fill: fill,
+  stroke: stroke,
 )[
   #if title != none [
     #block(width: 100%, height: 100%)[

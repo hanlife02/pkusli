@@ -75,6 +75,7 @@
   title: [三图内容页模板],
   subtitle: [Triple Gallery Template],
   header-left-offset: 10em,
+  body-gap: 1.1em,
   image-one: [
     #image("figures/background.png", width: 100%, height: 100%, fit: "contain")
   ],

@@ -33,6 +33,7 @@
 #let soft-card(
   body,
   fill: palette.card,
+  stroke: 0.9pt + palette.line,
   inset: 0.82em,
   radius: 14pt,
   width: 100%,
@@ -43,5 +44,5 @@
   inset: inset,
   radius: radius,
   fill: fill,
-  stroke: 0.9pt + palette.line,
+  stroke: stroke,
 )[#body]
