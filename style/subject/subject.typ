@@ -1,5 +1,5 @@
 #import "@preview/touying:0.6.1": *
-#import "../shared/base.typ": palette, page-background, page-footer, soft-card
+#import "../shared/base.typ": page-background, page-footer, palette, soft-card
 
 #let top-visual-slot(height: 9em) = block(
   width: 100%,
@@ -33,9 +33,7 @@
 ]
 
 #let main-stage(body) = block(width: 100%, height: 100%)[
-  #soft-card(inset: 0.95em, radius: 16pt, height: 100%)[
-    #body
-  ]
+  #body
 ]
 
 #let subject-slide(
@@ -54,7 +52,7 @@
     self,
     config-page(
       background: page-background(),
-      margin: (top: 2.1em, bottom: 1.25em, x: 1.35em),
+      margin: (top: 1.2em, bottom: 1.25em, x: 1.35em),
       header: self => [],
       footer: self => page-footer(self),
     ),
@@ -71,8 +69,7 @@
             #grid(
               columns: (1fr, 18.4em),
               column-gutter: 0.78em,
-              [#top-visual-slot()],
-              [#top-side-panel(title, kicker: kicker, body: panel-body)],
+              [#top-visual-slot()], [#top-side-panel(title, kicker: kicker, body: panel-body)],
             )
           ],
           [#main-stage(content)],
