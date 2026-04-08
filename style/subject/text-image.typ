@@ -4,12 +4,17 @@
 #let text-image-layout(
   ..image-args,
   text-body: [],
+  image-caption: none,
   text-width: 1fr,
   image-width: 1fr,
   swap-sides: false,
   column-gap: 1.05em,
   image-max-width: 96%,
   image-max-height: 88%,
+  image-caption-size: 0.58em,
+  image-caption-fill: palette.muted,
+  image-caption-leading: 0.52em,
+  image-caption-gap: 0.12em,
   text-size: 0.9em,
   text-fill: palette.ink,
   text-leading: 0.62em,
@@ -26,14 +31,25 @@
 
   #let image-column = [
     #block(width: 100%, height: 100%)[
-      #align(center + horizon)[
-        #image(
-          ..image-args,
-          width: image-max-width,
-          height: image-max-height,
-          fit: "contain",
-        )
-      ]
+      #grid(
+        rows: if image-caption == none { (1fr,) } else { (1fr, auto) },
+        row-gutter: if image-caption == none { 0pt } else { image-caption-gap },
+        [
+          #align(center + horizon)[
+            #image(
+              ..image-args,
+              width: image-max-width,
+              height: image-max-height,
+              fit: "contain",
+            )
+          ]
+        ],
+        if image-caption != none [
+          #set text(size: image-caption-size, fill: image-caption-fill)
+          #set par(leading: image-caption-leading)
+          #align(center + top)[#image-caption]
+        ],
+      )
     ]
   ]
 
@@ -55,6 +71,7 @@
   subtitle: none,
   top-content: [],
   text-body: [],
+  image-caption: none,
   header-left-offset: 0pt,
   swap-sides: false,
   column-gap: 1.05em,
@@ -62,6 +79,10 @@
   image-width: 1fr,
   image-max-width: 96%,
   image-max-height: 88%,
+  image-caption-size: 0.58em,
+  image-caption-fill: palette.muted,
+  image-caption-leading: 0.52em,
+  image-caption-gap: 0.12em,
   text-size: 0.9em,
   text-fill: palette.ink,
   text-leading: 0.62em,
@@ -110,12 +131,17 @@
     #text-image-layout(
       ..image-args,
       text-body: text-body,
+      image-caption: image-caption,
       text-width: text-width,
       image-width: image-width,
       swap-sides: swap-sides,
       column-gap: column-gap,
       image-max-width: image-max-width,
       image-max-height: image-max-height,
+      image-caption-size: image-caption-size,
+      image-caption-fill: image-caption-fill,
+      image-caption-leading: image-caption-leading,
+      image-caption-gap: image-caption-gap,
       text-size: text-size,
       text-fill: text-fill,
       text-leading: text-leading,

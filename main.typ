@@ -3,12 +3,13 @@
   agenda-page,
   cover-page,
   end-page,
-  references-page,
+  references-pages,
   subject-content-page,
   subject-text-image-page,
   subject-triple-gallery-page,
   transition-page,
 )
+#import "references-display.typ": reference-items
 
 #let report-title = [数智校园建设项目汇报]
 #let report-subtitle = [Touying 演示模板示例]
@@ -69,6 +70,7 @@
   title: [总体方案与架构思路],
   header-left-offset: 10em,
   top-content: [一句话结论：先明确数据链路和服务对象，再决定平台拆分方式。],
+  image-caption: [图 1. 校园数智化平台总体方案示意图。],
   text-body: [
     这一页适合放“左文右图”或“左图右文”的方案说明：
 
@@ -105,9 +107,9 @@
   ],
 )
 
-#references-page(
-  sources: read("references.bib", encoding: none),
-  style: "gb-7714-2015-numeric",
+#references-pages(
+  entries: reference-items,
+  per-page: 3,
 )
 
 #end-page(
