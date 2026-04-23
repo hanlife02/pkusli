@@ -1,0 +1,123 @@
+# 1-touying-ethan
+
+这是一个基于 Typst 与 [Touying](https://typst.app/universe/package/touying/) 的中文汇报型演示模板项目，当前示例主题为“数智校园建设项目汇报”。
+
+仓库里已经包含一份可直接打开的示例源文件 [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 和导出的 [`main.pdf`](/Users/hanlife02/code/pre/1-touying-ethan/main.pdf)。如果你要把它改成自己的汇报，只需要替换封面信息、正文内容、图片素材和参考文献。
+
+## 技术栈
+
+- Typst
+- Touying `0.6.1`
+- 自定义主题与页面组件
+
+## 项目结构
+
+```text
+.
+├── main.typ                 # 演示入口文件
+├── main.pdf                 # 当前导出结果
+├── references.bib          # BibTeX 参考文献
+├── references-display.typ  # 参考文献展示条目
+├── figures/                # 图片与图形素材
+├── slides/                 # 页面级封装与导出入口
+└── style/                  # 主题样式、封面、正文布局组件
+```
+
+其中：
+
+- [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 负责组装整套演示内容，包括封面、目录、过渡页、正文页、参考文献页和结束页。
+- [`slides/`](/Users/hanlife02/code/pre/1-touying-ethan/slides) 提供按页面类型组织的调用入口。
+- [`style/`](/Users/hanlife02/code/pre/1-touying-ethan/style) 定义主题、颜色、基础布局和各类页面样式。
+- [`figures/`](/Users/hanlife02/code/pre/1-touying-ethan/figures) 存放演示中使用的占位图和图标素材。
+
+## 如何使用
+
+1. 修改 [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 顶部的标题、作者、机构、日期等变量。
+2. 按需替换正文中的页面内容。
+3. 如果需要替换配图，把新素材放入 [`figures/`](/Users/hanlife02/code/pre/1-touying-ethan/figures) 并更新图片路径。
+4. 如果需要扩展版式，优先在 [`slides/`](/Users/hanlife02/code/pre/1-touying-ethan/slides) 和 [`style/`](/Users/hanlife02/code/pre/1-touying-ethan/style) 中新增或调整页面组件。
+
+## 与 AI 协作的推荐方式
+
+这个仓库额外约定了一套面向 AI Agent 的输入方式，详细规则见 [`AI_README.md`](/Users/hanlife02/code/pre/1-touying-ethan/AI_README.md)。
+
+如果你希望 AI 更稳定地修改 Touying 模板、补充内容或调整页面，建议在目标目录下准备两个文件：
+
+- `task.md`：描述任务目标、背景、约束和验收标准。
+- `config.md`：提供标题、作者、目录、正文、图片引用和其他模板配置。
+
+推荐工作流：
+
+1. 先写 `task.md`。
+2. 视情况补充 `config.md`。
+3. 再让 AI 基于这两个文件执行修改。
+
+其中：
+
+- `task.md` 是必填的任务描述文件。
+- `config.md` 不是强制，但强烈建议提供。
+- 如果 `config.md` 提供了字段，AI 应优先使用，而不是自行改写核心信息。
+- 如果某些配置缺失，AI 可以只补缺省部分。
+- 如果 `task.md` 与 `config.md` 冲突，应以 `task.md` 中的目标和约束优先。
+- 默认优先最小改动，除非任务说明明确允许较大调整。
+
+## `task.md` 建议内容
+
+`task.md` 建议至少覆盖以下四部分：
+
+- 目标：这次要 AI 完成什么。
+- 背景：这份 PPT 或模板将用于什么场景。
+- 约束：哪些文件能改，哪些内容不要动，是否要求最小改动。
+- 验收标准：什么结果算完成。
+
+## `config.md` 建议内容
+
+`config.md` 适合提供这类结构化配置：
+
+- 基础信息：标题、副标题、作者、单位、日期。
+- 目录信息：目录页各部分标题。
+- 页面内容：各部分主题、一句话摘要、正文要点。
+- 图片引用：封面图、正文配图、示例图。
+- 其他要求：风格偏好、是否保留参考文献页、是否保留结束页。
+
+如果这些信息由用户明确给出，AI 不应擅自改写；只有缺省字段才适合自动补全。
+
+## `ulw` 模式
+
+如果用户没有提前写好 `task.md` 和 `config.md`，但请求里显式传入 `ulw`，则 AI 可以改为逐步询问并代为生成这两个文件。
+
+这种模式下的流程应为：
+
+1. 先询问任务目标、背景、约束和验收标准。
+2. 再询问标题、作者、目录、正文、图片等配置项。
+3. 根据对话内容生成 `task.md` 和 `config.md`。
+4. 再基于这两个文件继续完成后续模板或内容修改。
+
+## 构建
+
+本机当前已安装 `typst 0.13.1`。在项目根目录执行：
+
+```bash
+typst compile main.typ
+```
+
+如果需要指定输出文件：
+
+```bash
+typst compile main.typ main.pdf
+```
+
+## 当前模板包含的页面类型
+
+- 封面页
+- 目录页
+- 分节过渡页
+- 通用正文页
+- 图文混排页
+- 三图展示页
+- 参考文献页
+- 结束页
+
+## 适用场景
+
+这个模板更适合正式汇报、项目阶段总结、方案宣讲和院校/机构内部展示。默认文案和字体风格偏中文正式汇报场景，如果改成英文演示或产品发布型风格，建议同步调整字体、字号和页面留白。
