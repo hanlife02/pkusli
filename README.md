@@ -1,8 +1,8 @@
-# touying-ethan
+# touying.ethan
 
 这是一个基于 Typst 与 [Touying](https://typst.app/universe/package/touying/) 的中文汇报型演示模板项目。
 
-仓库里已经包含一份可直接打开的示例源文件 [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 和导出的 [`main.pdf`](/Users/hanlife02/code/pre/1-touying-ethan/main.pdf)。如果你要把它改成自己的汇报，只需要替换封面信息、正文内容、图片素材和参考文献。
+仓库里已经包含一份可直接打开的示例源文件 [`main.typ`](main.typ) 和导出的 [`main.pdf`](main.pdf)。如果你要把它改成自己的汇报，只需要替换封面信息、正文内容、图片素材和参考文献。
 
 ## 技术栈
 
@@ -25,21 +25,22 @@
 
 其中：
 
-- [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 负责组装整套演示内容，包括封面、目录、过渡页、正文页、参考文献页和结束页。
-- [`slides/`](/Users/hanlife02/code/pre/1-touying-ethan/slides) 提供按页面类型组织的调用入口。
-- [`style/`](/Users/hanlife02/code/pre/1-touying-ethan/style) 定义主题、颜色、基础布局和各类页面样式。
-- [`figures/`](/Users/hanlife02/code/pre/1-touying-ethan/figures) 存放演示中使用的占位图和图标素材。
+- [`main.typ`](main.typ) 负责组装整套演示内容，包括封面、目录、过渡页、正文页、参考文献页和结束页。
+- [`slides/`](slides) 提供按页面类型组织的调用入口。
+- [`style/`](style) 定义主题、颜色、基础布局和各类页面样式。
+- [`figures/`](figures) 存放演示中使用的占位图和图标素材。
+- [`页面模板与用法示例.md`](页面模板与用法示例.md) 汇总了当前项目的页面模板说明、常用参数和可直接复制的调用示例。
 
 ## 如何使用
 
-1. 修改 [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 顶部的标题、作者、机构、日期等变量。
+1. 修改 [`main.typ`](main.typ) 顶部的标题、作者、机构、日期等变量。
 2. 按需替换正文中的页面内容。
-3. 如果需要替换配图，把新素材放入 [`figures/`](/Users/hanlife02/code/pre/1-touying-ethan/figures) 并更新图片路径。
-4. 如果需要扩展版式，优先在 [`slides/`](/Users/hanlife02/code/pre/1-touying-ethan/slides) 和 [`style/`](/Users/hanlife02/code/pre/1-touying-ethan/style) 中新增或调整页面组件。
+3. 如果需要替换配图，把新素材放入 [`figures/`](figures) 并更新图片路径。
+4. 如果需要扩展版式，优先在 [`slides/`](slides) 和 [`style/`](style) 中新增或调整页面组件。
 
 ## 与 AI 协作的推荐方式
 
-这个仓库额外约定了一套面向 AI Agent 的输入方式，详细规则见 [`AI_README.md`](/Users/hanlife02/code/pre/1-touying-ethan/AI_README.md)。
+这个仓库额外约定了一套面向 AI Agent 的输入方式，详细规则见 [`AI_README.md`](AI_README.md)。
 
 如果你希望 AI 更稳定地修改 Touying 模板、补充内容或调整页面，建议在目标目录下准备两个文件：
 

@@ -1,6 +1,6 @@
 ## 基础信息
 
-- 标题：`touying-ethan`
+- 标题：`touying.ethan`
 - 副标题：无
 - 作者：`Ethan`
 - 单位：`Peking University`
