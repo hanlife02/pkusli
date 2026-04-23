@@ -1,6 +1,6 @@
 # touying-ethan
 
-这是一个基于 Typst 与 [Touying](https://typst.app/universe/package/touying/) 的中文汇报型演示模板项目，当前示例主题为“数智校园建设项目汇报”。
+这是一个基于 Typst 与 [Touying](https://typst.app/universe/package/touying/) 的中文汇报型演示模板项目。
 
 仓库里已经包含一份可直接打开的示例源文件 [`main.typ`](/Users/hanlife02/code/pre/1-touying-ethan/main.typ) 和导出的 [`main.pdf`](/Users/hanlife02/code/pre/1-touying-ethan/main.pdf)。如果你要把它改成自己的汇报，只需要替换封面信息、正文内容、图片素材和参考文献。
 
