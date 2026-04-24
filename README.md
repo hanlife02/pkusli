@@ -38,6 +38,8 @@
 3. 如果需要替换配图，把新素材放入 [`figures/`](figures) 并更新图片路径。
 4. 如果需要扩展版式，优先在 [`slides/`](slides) 和 [`style/`](style) 中新增或调整页面组件。
 
+你还可以参考[这篇博客](https://hanlife02.com/blog/touying-ethan/)
+
 ## 与 AI 协作的推荐方式
 
 这个仓库额外约定了一套面向 AI Agent 的输入方式，详细规则见 [`AI_README.md`](AI_README.md)。
