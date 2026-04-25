@@ -1,13 +1,7 @@
 #import "style/index.typ": presentation-theme
 #import "slides/index.typ": (
-  agenda-page,
-  cover-page,
-  end-page,
-  references-manual-page,
-  subject-content-page,
-  subject-text-image-page,
-  subject-triple-gallery-page,
-  transition-page,
+  agenda-page, cover-page, end-page, references-manual-page, subject-content-page, subject-text-image-page,
+  subject-triple-gallery-page, transition-page,
 )
 
 #let report-title = [touying.ethan]
