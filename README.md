@@ -78,56 +78,33 @@ typst compile main.typ main.pdf
 
 > 页面模板说明：[页面模板与用法示例.md](页面模板与用法示例.md)
 
-## 与 AI 协作的推荐方式
+## AI Agent 快速使用
 
-推荐优先使用仓库内 Skill：[`skills/pkusli-slides`](skills/pkusli-slides/SKILL.md)。
+只按这一套流程走：
 
-在本机 Codex 中使用前，可以把仓库内 Skill 链接到 Codex 的用户 Skill 目录：
+1. Clone 本项目。
 
-```bash
-mkdir -p ~/.codex/skills
-ln -s "$(pwd)/skills/pkusli-slides" ~/.codex/skills/pkusli-slides
-```
+   ```bash
+   git clone git@github.com:hanlife02/pkusli.git
+   cd pkusli
+   ```
 
-如果 Codex 没有立即识别 `$pkusli-slides`，重启 Codex 后再试。
+2. 安装仓库内 Skill。
 
-可以直接对 AI Agent 说：
+   ```bash
+   mkdir -p ~/.codex/skills
+   ln -s "$(pwd)/skills/pkusli-slides" ~/.codex/skills/pkusli-slides
+   ```
 
-> 使用 `pkusli-slides`，把这个项目改成一份关于「你的主题」的演示稿。如果信息不够，请一次性问完需要的问题，然后更新 `task.md`、`config.md` 和 `main.typ`，并运行 `typst compile main.typ` 验证。
+3. 在项目根目录打开 AI Agent，例如 Codex 或 Claude Code。
 
-这个仓库额外约定了一套适合 AI Agent 的输入方式，详细规则见 [`AI_README.md`](AI_README.md)。
+4. 使用 Skill 完成演示稿。
 
-如果你希望 AI 更稳定地修改 Touying 模板、补充内容或调整页面，建议在目标目录下准备两个文件：
+   ```text
+   $pkusli-slides 把这个项目改成一份关于「你的主题」的演示稿。如果信息不够，请一次性问完需要的问题，然后更新 task.md、config.md 和 main.typ，并运行 typst compile main.typ 验证。
+   ```
 
-- `task.md`：描述任务目标、背景、约束和验收标准。
-- `config.md`：提供标题、作者、目录、正文、图片引用和其他模板配置。
-
-推荐工作流：
-
-1. 先写 `task.md`。
-2. 视情况补充 `config.md`。
-3. 再让 AI 基于这两个文件执行修改。
-
-补充规则：
-
-- `task.md` 是必填的任务描述文件。
-- `config.md` 不是强制，但强烈建议提供。
-- 如果 `config.md` 提供了字段，AI 应优先使用，而不是自行改写核心信息。
-- 如果某些配置缺失，AI 可以只补缺省部分。
-- 如果 `task.md` 与 `config.md` 冲突，应以 `task.md` 中的目标和约束优先。
-- 默认优先最小改动，除非任务说明明确允许较大调整。
-
-## `ulw` 模式
-
-如果用户没有提前写好 `task.md` 和 `config.md`，但请求里显式传入 `根据README.md，启动ulw模式`，则 AI 可以改为逐步询问并代为生成这两个文件。
-
-这种模式下的流程应为：
-
-1. 先询问任务目标、背景和验收标准。
-2. 默认采用约束：仅按模板修改 `main.typ`、`task.md`、`config.md`，并优先最小改动。
-3. 再询问标题、作者、目录、正文、图片等配置项。
-4. 根据对话内容生成 `task.md` 和 `config.md`。
-5. 再基于这两个文件继续完成后续模板或内容修改。
+如果 Codex 没有识别 `$pkusli-slides`，重启 Codex 后再试。
 
 ## 适用场景
 
