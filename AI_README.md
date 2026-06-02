@@ -1,12 +1,18 @@
 # AI Agent 使用说明
 
-这个项目推荐使用仓库内 Skill：`.agents/skills/pkusli-slides`。
+这个项目推荐先让 Agent 把仓库内 Skill `.agents/skills/pkusli-slides` 安装到本地，再使用 `$pkusli-slides`。
 
 目标是让 AI Agent 用尽可能少的交互次数，把用户需求转成可编译的 Typst/Touying 演示稿。
 
 ## 首选方式
 
 对 AI Agent 说：
+
+```text
+帮我安装本项目的 Skill 到本地。
+```
+
+安装后再说：
 
 ```text
 使用 pkusli-slides，把这个项目改成一份关于「你的主题」的演示稿。如果信息不够，请一次性问完需要的问题，然后更新 task.md、config.md 和 main.typ，并运行 typst compile main.typ 验证。

@@ -89,11 +89,15 @@ typst compile main.typ main.pdf
    cd pkusli
    ```
 
-2. 安装 Skill。
+2. 在项目根目录打开 AI Agent，例如 Codex 或 Claude Code。
 
-   Skill 已随仓库放在 `.agents/skills/pkusli-slides`。Codex 在项目根目录启动时会自动扫描这个目录，不需要再复制或链接到个人目录。
+3. 让 Agent 安装本项目 Skill 到本地。
 
-3. 在项目根目录打开 AI Agent，例如 Codex 或 Claude Code。
+   ```text
+   帮我安装本项目的 Skill 到本地。
+   ```
+
+   本项目的 Skill 源文件位于 `.agents/skills/pkusli-slides`。
 
 4. 使用 Skill 完成演示稿。
 
@@ -101,7 +105,7 @@ typst compile main.typ main.pdf
    $pkusli-slides 把这个项目改成一份关于「你的主题」的演示稿。如果信息不够，请一次性问完需要的问题，然后更新 task.md、config.md 和 main.typ，并运行 typst compile main.typ 验证。
    ```
 
-如果 Codex 没有识别 `$pkusli-slides`，确认当前目录是项目根目录，然后重启 Codex 再试。
+如果 Codex 没有识别 `$pkusli-slides`，请让 Agent 检查本地 Skill 安装位置，然后重启 Codex 再试。
 
 ## 适用场景
 
