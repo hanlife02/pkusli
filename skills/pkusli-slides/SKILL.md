@@ -33,7 +33,7 @@ When the input is too vague to produce a useful deck, ask this compact set and a
 3. 使用场景是什么，例如课程汇报、项目汇报、方案宣讲？
 4. 希望目录分为哪 3-6 部分？
 5. 每部分有哪些必须出现的要点？
-6. 是否有必须使用的图片、参考文献、作者单位或日期？
+6. 是否有目标页数、汇报时长、图片素材、图片比例、参考文献、排版密度或作者单位日期要求？
 ```
 
 ## Defaults
