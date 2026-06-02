@@ -82,6 +82,15 @@ typst compile main.typ main.pdf
 
 推荐优先使用仓库内 Skill：[`skills/pkusli-slides`](skills/pkusli-slides/SKILL.md)。
 
+在本机 Codex 中使用前，可以把仓库内 Skill 链接到 Codex 的用户 Skill 目录：
+
+```bash
+mkdir -p ~/.codex/skills
+ln -s "$(pwd)/skills/pkusli-slides" ~/.codex/skills/pkusli-slides
+```
+
+如果 Codex 没有立即识别 `$pkusli-slides`，重启 Codex 后再试。
+
 可以直接对 AI Agent 说：
 
 > 使用 `pkusli-slides`，把这个项目改成一份关于「你的主题」的演示稿。如果信息不够，请一次性问完需要的问题，然后更新 `task.md`、`config.md` 和 `main.typ`，并运行 `typst compile main.typ` 验证。
