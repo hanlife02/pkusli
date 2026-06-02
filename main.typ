@@ -8,7 +8,7 @@
 #let report-subtitle = none
 #let report-author = [Ethan]
 #let report-institution = [Peking University]
-#let report-date = [2026-04-23]
+#let report-date = [2026-06-02]
 #let demo-image = "figures/background.png"
 
 #show: presentation-theme
