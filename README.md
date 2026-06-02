@@ -1,11 +1,10 @@
-# touying.ethan
+# pkusli
 
 一个基于 Typst 与 [Touying](https://typst.app/universe/package/touying/) 的演示模板。
 
 > **先看这里**
 >
-> 如果你想先快速了解使用方式，建议优先阅读这篇博客：
-> [https://hanlife02.com/blog/touying-ethan/](https://hanlife02.com/blog/touying-ethan/)
+> 如果你想先快速了解使用方式，建议优先阅读本文档中的快速上手、页面模板说明和 AI 协作说明。
 
 仓库里已经包含一份可直接打开的示例源文件 [`main.typ`](main.typ) 和导出的 [`main.pdf`](main.pdf)。如果你要把它改成自己的汇报，通常只需要替换封面信息、正文内容、图片素材和参考文献。
 
@@ -121,6 +120,5 @@ typst compile main.typ main.pdf
 
 ## 相关资料
 
-- 博客说明：[https://hanlife02.com/blog/touying-ethan/](https://hanlife02.com/blog/touying-ethan/)
 - 页面模板说明：[页面模板与用法示例.md](页面模板与用法示例.md)
 - AI 协作说明：[AI_README.md](AI_README.md)

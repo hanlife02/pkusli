@@ -4,7 +4,7 @@
   subject-triple-gallery-page, transition-page,
 )
 
-#let report-title = [touying.ethan]
+#let report-title = [pkusli]
 #let report-subtitle = none
 #let report-author = [Ethan]
 #let report-institution = [Peking University]
@@ -46,7 +46,7 @@
 #subject-content-page(
   title: [这个模板能帮你什么],
   header-left-offset: 10em,
-  top-content: [一句话结论：`touying.ethan` 已经提供了一套适合中文正式汇报的 Touying 演示结构，你只需要替换内容，而不必从零搭版。],
+  top-content: [一句话结论：`pkusli` 已经提供了一套适合中文正式汇报的 Touying 演示结构，你只需要替换内容，而不必从零搭版。],
   content: [
     从用户视角看，这个项目最有价值的是三件事：
 
