@@ -1,6 +1,6 @@
 # AI Agent 使用说明
 
-这个项目推荐使用仓库内 Skill：`skills/pkusli-slides`。
+这个项目推荐使用仓库内 Skill：`.agents/skills/pkusli-slides`。
 
 目标是让 AI Agent 用尽可能少的交互次数，把用户需求转成可编译的 Typst/Touying 演示稿。
 
