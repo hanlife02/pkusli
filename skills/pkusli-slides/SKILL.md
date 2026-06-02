@@ -10,14 +10,16 @@ Use this skill to turn a short presentation request into a compiled `pkusli` Typ
 ## Workflow
 
 1. Read `README.md`, `task.md`, `config.md`, and `main.typ` before editing.
-2. If the user request plus `task.md` and `config.md` already provide a clear topic, audience, structure, and content direction, start implementation without asking more questions.
-3. If critical information is missing, ask at most one batch of up to 6 questions. Do not ask one question per turn.
-4. If the user asks for a draft, says to fill gaps yourself, or leaves non-critical fields blank, choose reasonable defaults for a formal Chinese presentation.
-5. Default to editing only `main.typ`, `task.md`, and `config.md`.
-6. Do not edit `slides/`, `style/`, or `figures/` unless the user explicitly asks for new page components, theme changes, or asset changes.
-7. After editing, run `typst compile main.typ`.
-8. If compilation fails, fix the error once and recompile. If it still fails, report the exact blocker.
-9. Final response: summarize changed files, compile result, output PDF path, and any assumptions or missing user-provided assets.
+2. Read `references/layout-rules.md` before generating or rewriting slide content.
+3. If the user request plus `task.md` and `config.md` already provide a clear topic, audience, structure, and content direction, start implementation without asking more questions.
+4. If critical information is missing, ask at most one batch of up to 6 questions. Do not ask one question per turn.
+5. If the user asks for a draft, says to fill gaps yourself, or leaves non-critical fields blank, choose reasonable defaults for a formal Chinese presentation.
+6. Default to editing only `main.typ`, `task.md`, and `config.md`.
+7. Do not edit `slides/`, `style/`, or `figures/` unless the user explicitly asks for new page components, theme changes, or asset changes.
+8. Apply the layout rules while choosing page types, agenda count, text length, image sizing, and captions.
+9. After editing, run `typst compile main.typ`.
+10. If compilation fails, fix the error once and recompile. If it still fails, report the exact blocker.
+11. Final response: summarize changed files, compile result, output PDF path, layout assumptions, and any remaining layout risk or missing user-provided assets.
 
 ## One-Batch Questions
 
@@ -50,3 +52,10 @@ When the input is too vague to produce a useful deck, ask this compact set and a
 - Keep `task.md` as the task brief and `config.md` as the user-facing content configuration.
 - Use `页面模板与用法示例.md` only when you need page parameters or examples.
 - Preserve a complete deck shape: cover, agenda, section transitions, content pages, optional references, and end page.
+- Prefer splitting dense content into more slides over shrinking font sizes.
+- Add concise captions for image-text and gallery pages.
+- Before the final response, check whether any agenda item, title, summary, body text, image, or caption violates `references/layout-rules.md`.
+
+## References
+
+- `references/layout-rules.md`: layout density, agenda count, image ratio, caption, and overflow rules.
