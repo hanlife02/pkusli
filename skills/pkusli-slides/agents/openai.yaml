@@ -1,0 +1,4 @@
+interface:
+  display_name: "pkusli Slides"
+  short_description: "Generate pkusli Typst slides quickly"
+  default_prompt: "Use $pkusli-slides to turn my request into a compiled presentation."

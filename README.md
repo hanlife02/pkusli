@@ -80,6 +80,12 @@ typst compile main.typ main.pdf
 
 ## 与 AI 协作的推荐方式
 
+推荐优先使用仓库内 Skill：[`skills/pkusli-slides`](skills/pkusli-slides/SKILL.md)。
+
+可以直接对 AI Agent 说：
+
+> 使用 `pkusli-slides`，把这个项目改成一份关于「你的主题」的演示稿。如果信息不够，请一次性问完需要的问题，然后更新 `task.md`、`config.md` 和 `main.typ`，并运行 `typst compile main.typ` 验证。
+
 这个仓库额外约定了一套适合 AI Agent 的输入方式，详细规则见 [`AI_README.md`](AI_README.md)。
 
 如果你希望 AI 更稳定地修改 Touying 模板、补充内容或调整页面，建议在目标目录下准备两个文件：

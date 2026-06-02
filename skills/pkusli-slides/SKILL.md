@@ -1,0 +1,52 @@
+---
+name: pkusli-slides
+description: Use when creating, editing, or compiling a Typst/Touying presentation based on the pkusli template, especially when the user wants an AI agent to generate slides from a short request, task.md, or config.md with minimal back-and-forth.
+---
+
+# pkusli Slides
+
+Use this skill to turn a short presentation request into a compiled `pkusli` Typst/Touying deck with as few user turns as practical.
+
+## Workflow
+
+1. Read `README.md`, `task.md`, `config.md`, and `main.typ` before editing.
+2. If the user request plus `task.md` and `config.md` already provide a clear topic, audience, structure, and content direction, start implementation without asking more questions.
+3. If critical information is missing, ask at most one batch of up to 6 questions. Do not ask one question per turn.
+4. If the user asks for a draft, says to fill gaps yourself, or leaves non-critical fields blank, choose reasonable defaults for a formal Chinese presentation.
+5. Default to editing only `main.typ`, `task.md`, and `config.md`.
+6. Do not edit `slides/`, `style/`, or `figures/` unless the user explicitly asks for new page components, theme changes, or asset changes.
+7. After editing, run `typst compile main.typ`.
+8. If compilation fails, fix the error once and recompile. If it still fails, report the exact blocker.
+9. Final response: summarize changed files, compile result, output PDF path, and any assumptions or missing user-provided assets.
+
+## One-Batch Questions
+
+When the input is too vague to produce a useful deck, ask this compact set and allow blanks:
+
+```text
+为了一次完成初稿，请补充下面信息。可以留空，留空的部分我会按正式中文汇报场景补全：
+
+1. 演示主题是什么？
+2. 目标受众是谁？
+3. 使用场景是什么，例如课程汇报、项目汇报、方案宣讲？
+4. 希望目录分为哪 3-6 部分？
+5. 每部分有哪些必须出现的要点？
+6. 是否有必须使用的图片、参考文献、作者单位或日期？
+```
+
+## Defaults
+
+- Subtitle: use `none` when absent.
+- Date: use the current date for a new deck; preserve the existing date for small edits.
+- Images: reuse `figures/background.png` as a placeholder when no user image is provided.
+- References: preserve the references page when present; replace entries with topic-relevant placeholders if needed.
+- Sections: keep 3 to 6 sections. Expand sparse requests to 3 sections, and merge overlong outlines to at most 6 sections.
+- Single-topic requests: use an overview, method, results, and summary structure unless a better domain-specific structure is obvious.
+
+## Implementation Rules
+
+- Prefer existing page components imported from `slides/index.typ`.
+- Keep content edits in `main.typ`; avoid changing theme internals.
+- Keep `task.md` as the task brief and `config.md` as the user-facing content configuration.
+- Use `页面模板与用法示例.md` only when you need page parameters or examples.
+- Preserve a complete deck shape: cover, agenda, section transitions, content pages, optional references, and end page.
