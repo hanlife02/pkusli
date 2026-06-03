@@ -115,3 +115,23 @@ When content is too dense, apply this order:
 6. Report remaining layout risk in the final response.
 
 Do not solve overflow by shrinking text aggressively, overloading captions, or adding more than three images to a triple-gallery page.
+
+## Validation Prompt
+
+Use this prompt for a quick end-to-end layout test in a temporary copy of the project:
+
+```text
+$pkusli-slides 把这个项目改成一份关于「北京大学新生课程介绍」的 10 分钟演示稿。你可以自行补全内容，要求版面不要拥挤，图片用现有素材占位，完成后编译验证。
+```
+
+The generated deck should pass these checks:
+
+- Agenda has 3-6 sections.
+- Page titles are short and specific.
+- `top-content` entries are one concise conclusion sentence.
+- Content pages use 3-5 bullets or short paragraphs.
+- Image-text pages have exactly one main image and a concise caption.
+- Triple-gallery pages have exactly 3 comparable objects.
+- Captions describe image content instead of explaining the whole argument.
+- `typst compile main.typ` succeeds.
+- Final response reports any layout assumptions or remaining layout risk.
