@@ -22,7 +22,26 @@ Use these rules when generating or editing `main.typ`. They are practical layout
 - Content slides: 3-5 bullets, each 12-28 Chinese characters.
 - Paragraph-only slides: at most 2-3 short paragraphs, each 40-70 Chinese characters.
 - If content exceeds 6 bullets or one long paragraph, split into multiple slides before reducing font size.
+- Avoid underfilled slides. A normal content slide should not contain only a title plus one short sentence.
+- If a generated slide looks sparse, add concrete examples, implications, next actions, or a second supporting block before accepting it.
 - Do not put explanation paragraphs in captions.
+
+## Minimum Content Density
+
+Use these lower bounds to avoid pages with large empty areas:
+
+- `subject-content-page`: at least 3 bullets, or 2 short paragraphs, plus a meaningful `top-content`.
+- `subject-text-image-page`: at least 3 bullets in `text-body`, one image, and one caption.
+- `subject-triple-gallery-page`: exactly 3 image/content slots, 3 captions, and a 30-70 Chinese character bottom summary.
+- `transition-page`: one short title plus a 24-48 Chinese character `description`; do not leave description empty.
+- `references-manual-page`: at least 2 entries when shown.
+
+If a page falls below these lower bounds, do one of the following before finalizing:
+
+1. Add useful concrete details that support the slide's main idea.
+2. Merge it with an adjacent page covering the same section.
+3. Convert the page to a better-fitting template, such as from `subject-content-page` to `subject-text-image-page`.
+4. Remove the page if it does not add a distinct idea.
 
 ## Page-Specific Rules
 
@@ -116,6 +135,18 @@ When content is too dense, apply this order:
 
 Do not solve overflow by shrinking text aggressively, overloading captions, or adding more than three images to a triple-gallery page.
 
+## Underfill Handling
+
+When content is too sparse, apply this order:
+
+1. Add concrete examples, constraints, implications, or next actions.
+2. Add a supporting image with a concise caption when an image would clarify the idea.
+3. Merge the slide with the previous or next slide if they share the same purpose.
+4. Replace a low-density content page with a transition page only when it is purely a section opener.
+5. Report remaining underfill risk in the final response if the user did not provide enough content.
+
+Do not leave content pages with only one bullet, only one short sentence, or an empty-looking image area.
+
 ## Validation Prompt
 
 Use this prompt for a quick end-to-end layout test in a temporary copy of the project:
@@ -130,8 +161,11 @@ The generated deck should pass these checks:
 - Page titles are short and specific.
 - `top-content` entries are one concise conclusion sentence.
 - Content pages use 3-5 bullets or short paragraphs.
+- Content pages are not underfilled; no page has only a title plus one short sentence.
 - Image-text pages have exactly one main image and a concise caption.
+- Image-text pages have at least 3 bullets or equivalent explanatory text.
 - Triple-gallery pages have exactly 3 comparable objects.
+- Triple-gallery pages have 3 captions and a meaningful bottom summary.
 - Captions describe image content instead of explaining the whole argument.
 - `typst compile main.typ` succeeds.
-- Final response reports any layout assumptions or remaining layout risk.
+- Final response reports any layout assumptions, overflow risk, or underfill risk.

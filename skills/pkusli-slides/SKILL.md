@@ -19,7 +19,7 @@ Use this skill to turn a short presentation request into a compiled `pkusli` Typ
 8. Apply the layout rules while choosing page types, agenda count, text length, image sizing, and captions.
 9. After editing, run `typst compile main.typ`.
 10. If compilation fails, fix the error once and recompile. If it still fails, report the exact blocker.
-11. Final response: summarize changed files, compile result, output PDF path, layout assumptions, and any remaining layout risk or missing user-provided assets.
+11. Final response: summarize changed files, compile result, output PDF path, layout assumptions, and any remaining overflow, underfill, or missing-asset risk.
 
 ## One-Batch Questions
 
@@ -53,8 +53,9 @@ When the input is too vague to produce a useful deck, ask this compact set and a
 - Use `页面模板与用法示例.md` only when you need page parameters or examples.
 - Preserve a complete deck shape: cover, agenda, section transitions, content pages, optional references, and end page.
 - Prefer splitting dense content into more slides over shrinking font sizes.
+- Avoid underfilled pages; if a content page has only a title plus one short sentence or one bullet, add useful detail, merge it, or change the page type.
 - Add concise captions for image-text and gallery pages.
-- Before the final response, check whether any agenda item, title, summary, body text, image, or caption violates `references/layout-rules.md`.
+- Before the final response, check whether any agenda item, title, summary, body text, image, caption, or low-density page violates `references/layout-rules.md`.
 
 ## References
 
