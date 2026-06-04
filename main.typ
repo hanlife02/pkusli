@@ -4,12 +4,45 @@
   subject-triple-gallery-page, transition-page,
 )
 
-#let report-title = [pkusli]
-#let report-subtitle = none
+#let report-title = [pkusli 模板介绍]
+#let report-subtitle = [Typst / Touying 中文演示工作流]
 #let report-author = [Ethan]
 #let report-institution = [Peking University]
-#let report-date = [2026-06-02]
+#let report-date = [2026-06-04]
 #let demo-image = "figures/background.png"
+
+#let component-card(title, body) = [
+  #block(width: 100%, height: 100%)[
+    #align(center + horizon)[
+      #set align(center)
+      #text(size: 1.08em, weight: "bold")[#title]
+      #v(0.36em)
+      #text(size: 0.68em)[#body]
+    ]
+  ]
+]
+
+#let bottom-grid(left-title, left-body, right-title, right-body) = [
+  #v(0.68em)
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 1.05em,
+    [
+      #set text(size: 0.78em)
+      #set par(leading: 0.48em)
+      #text(weight: "bold")[#left-title]
+      #v(0.12em)
+      #left-body
+    ],
+    [
+      #set text(size: 0.78em)
+      #set par(leading: 0.48em)
+      #text(weight: "bold")[#right-title]
+      #v(0.12em)
+      #right-body
+    ],
+  )
+]
 
 #show: presentation-theme
 
@@ -25,10 +58,10 @@
   left-card-dy: 1.5em,
   right-card-dy: 1.5em,
   sections: (
-    [01 / 模板概览],
-    [02 / 快速上手],
-    [03 / 常见修改入口],
-    [04 / 构建导出与协作],
+    [01 / 模板定位],
+    [02 / 页面组件],
+    [03 / 使用流程],
+    [04 / 协作交付],
   ),
 )
 
@@ -39,40 +72,59 @@
   left-card-dy: 1.5em,
   right-card-dx: 0pt,
   right-card-dy: 1.5em,
-  title: [模板概览],
-  description: [先让用户知道这个仓库能做什么、适合什么场景，以及它已经替你准备好了哪些页面能力。],
+  title: [模板定位],
+  description: [先明确模板服务的对象、解决的问题，以及它适合承载的中文正式汇报类型。],
 )
 
 #subject-content-page(
-  title: [这个模板能帮你什么],
+  title: [为什么选择 pkusli],
   header-left-offset: 10em,
-  top-content: [一句话结论：`pkusli` 已经提供了一套适合中文正式汇报的 Touying 演示结构，你只需要替换内容，而不必从零搭版。],
+  top-content: [一句话结论：pkusli 把中文正式汇报的常见版式预先封装成可复用组件。],
+  content-text-size: 0.9em,
+  content-text-leading: 0.72em,
   content: [
-    从用户视角看，这个项目最有价值的是三件事：
+    `pkusli` 的目标不是替代演讲内容，而是降低从空白页面开始搭版的成本：
 
-    - 开箱即用：仓库里已经带有 `main.typ`、示例页面、示例图片和导出的 `main.pdf`，适合直接改造。
-    - 页面齐全：默认包含封面页、目录页、过渡页、正文页、图文页、三图页、参考文献页和结束页。
-    - 场景明确：更适合正式汇报、项目总结、方案宣讲和院校或机构内部展示，不需要自己重新搭建整体视觉风格。
+    - 结构先行：封面、目录、章节、正文、参考文献和结束页已经形成完整链路。
+    - 中文友好：标题、摘要、图注和参考文献页更贴近中文汇报的阅读节奏。
+    - Typst 驱动：页面内容以文本形式维护，适合版本管理、审阅和复用。
+    - Touying 承载：复用演示框架能力，保留后续动画和页面扩展空间。
+    - AI 可协作：任务、配置和页面入口清晰，便于让 Agent 稳定接手修改。
 
-    如果你的目标是“尽快做出一份看起来完整、结构稳定的中文 PPT”，这个模板已经覆盖了大多数常见需求。
+    因此它更适合作为“可持续改造的演示模板”，而不是一次性的视觉示例文件。
+
+    #bottom-grid(
+      [典型场景],
+      [
+        - 课程汇报与读书报告
+        - 项目复盘与方案宣讲
+      ],
+      [维护原则],
+      [
+        - 内容入口优先改
+        - 样式组件按需动
+      ],
+    )
   ],
 )
 
 #subject-text-image-page(
   demo-image,
-  title: [仓库结构与文件职责],
+  title: [仓库入口分工],
   header-left-offset: 10em,
-  top-content: [一句话结论：真正需要频繁接触的入口并不多，先理解 `main.typ`、`slides/`、`style/` 和 `figures/` 的分工即可。],
-  image-caption: [图 1. 仓库内置示例背景图，可作为图片占位与布局预览素材。],
+  text-width: 1.2fr,
+  image-width: 0.8fr,
+  image-max-height: 70%,
+  top-content: [一句话结论：日常改稿优先处理内容入口，主题和组件层只在确有需求时再动。],
+  image-caption: [图 1. 默认背景图用于版式占位。],
   text-body: [
-    使用时可以按下面的方式理解项目结构：
+    第一次接手项目时，可以按职责而不是文件数量理解仓库：
 
-    - `main.typ`：整套演示的总入口，负责定义封面信息、目录和每一页的调用顺序。
-    - `slides/`：页面级封装入口，按页面类型组织调用方式，方便你直接挑选现成页面。
-    - `style/`：主题样式和版式实现，如果只是写自己的汇报，通常不需要先改这里。
-    - `figures/`：存放封面图、正文配图、截图或图标素材；替换图片时优先改这里的文件路径。
-
-    推荐先改内容层，再决定是否需要动样式层。这样更稳，也更容易控制改动范围。
+    - `main.typ` 是演示入口，负责标题变量、目录结构和每页调用顺序。
+    - `task.md` 描述本轮目标、受众、约束和验收标准，减少反复追问。
+    - `config.md` 保存标题、章节、素材、图注和排版偏好，便于复用。
+    - `slides/` 暴露页面组件，`style/` 承载视觉实现，默认不直接改。
+    - `figures/` 存放封面图、截图和示意图；没有素材时只作为占位预览。
   ],
 )
 
@@ -81,41 +133,57 @@
   marker: [PART],
   left-card-dy: 1.5em,
   right-card-dy: 1.5em,
-  title: [快速上手],
-  description: [这一部分只讲最短路径，让第一次接触 Typst 模板的用户也能快速产出自己的演示稿。],
+  title: [页面组件],
+  description: [把页面组件理解成可复用积木，按信息形态选择正文、图文或并列展示。],
 )
 
-#subject-content-page(
-  title: [从零开始的最短路径],
+#subject-triple-gallery-page(
+  title: [核心页面组件],
   header-left-offset: 10em,
-  top-content: [一句话结论：先改封面信息，再改目录和正文，最后替换图片并导出 PDF，是上手成本最低的方式。],
-  content: [
-    如果你第一次使用这个模板，可以按照这个顺序操作：
-
-    - 第一步：打开 `main.typ`，修改标题、作者、单位、日期等基础信息。
-    - 第二步：调整目录页 `sections`，让整体结构先和你的汇报提纲对齐。
-    - 第三步：按页面类型替换正文内容，把示例文本改成你的项目背景、方案、结果或结论。
-    - 第四步：把 `figures/` 中的占位图换成你的截图、架构图或配图，再检查说明文字。
-
-    这个顺序的好处是：你总能先得到一份“完整但未精修”的初稿，然后再逐页补细节。
+  body-gap: 0.8em,
+  image-height: 9.8em,
+  content-row-gap: 1.1em,
+  body-text-size: 0.9em,
+  image-one: component-card([结构页], [封面、目录、章节过渡；建立听众预期。]),
+  image-one-caption: [封面目录与过渡页],
+  image-two: component-card([内容页], [正文、图文、三项并列；承载主要信息。]),
+  image-two-caption: [正文图文与三图页],
+  image-three: component-card([收束页], [参考文献、致谢结束；完成交付闭环。]),
+  image-three-caption: [参考文献与结束页],
+  text-body: [
+    三类组件分工明确：结构页负责叙事节奏，内容页负责观点表达，收束页负责来源和结束。生成演示稿时应让内容页数量明显多于过渡页。
   ],
 )
 
-#subject-text-image-page(
-  demo-image,
-  title: [你最常改的几个地方],
+#subject-content-page(
+  title: [按内容选择页面],
   header-left-offset: 10em,
-  top-content: [一句话结论：大多数用户只需要改变量、目录和页面文本，不需要一开始就碰底层样式。],
-  image-caption: [图 2. 当前模板可直接复用示意图位，后续再替换为你的业务图片或截图。],
-  text-body: [
-    日常制作自己的 PPT 时，最常见的修改入口通常是这些：
+  top-content: [一句话结论：先判断信息形态，再选择页面类型，比先挑视觉样式更稳定。],
+  content-text-size: 0.9em,
+  content-text-leading: 0.72em,
+  content: [
+    选择页面类型时，可以使用下面的判断顺序：
 
-    - 封面信息：`report-title`、`report-author`、`report-institution`、`report-date`。
-    - 目录页：`agenda-page` 里的 `sections`，决定整套演示的章节结构。
-    - 页面内容：正文页里的 `title`、`top-content`、`content` 或 `text-body`。
-    - 图片区域：图文页和三图页中的图片路径与图注说明。
+    - 结论、步骤、原则和检查项：优先使用 `subject-content-page`，保持 4-5 个要点。
+    - 一张架构图或截图配解释：使用 `subject-text-image-page`，图片只服务于文字说明。
+    - 三个模块、阶段或结果并列：使用 `subject-triple-gallery-page`，三项必须可比较。
+    - 章节切换和节奏提示：使用 `transition-page`，不要把它当成正文页。
+    - 来源或延伸阅读：少量条目用 `references-manual-page`，正式文献可接 `.bib`。
 
-    只要先把这几类内容替换掉，你就已经从“模板示例”切换成“自己的汇报”了。
+    如果某页只有一句话或一张占位图，就应该补充例子、约束、下一步，或直接合并到相邻页。
+
+    #bottom-grid(
+      [判断示例],
+      [
+        - 流程或原则用正文页
+        - 截图或架构图用图文页
+      ],
+      [失败信号],
+      [
+        - 下半页只剩背景
+        - 图注承担长解释
+      ],
+    )
   ],
 )
 
@@ -124,22 +192,59 @@
   marker: [PART],
   left-card-dy: 1.5em,
   right-card-dy: 1.5em,
-  title: [常见修改入口],
-  description: [这里把模板里最常用的三种正文页面放在一起，帮助用户按内容类型挑选合适版式。],
+  title: [使用流程],
+  description: [从需求配置到 Typst 编译，建立一条可重复、可检查的成稿路径。],
 )
 
-#subject-triple-gallery-page(
-  title: [三类常用页面怎么选],
+#subject-content-page(
+  title: [从需求到初稿],
   header-left-offset: 10em,
-  body-gap: 1.1em,
-  image-one: demo-image,
-  image-one-caption: [正文页：适合结论、列表、步骤、表格说明。],
-  image-two: demo-image,
-  image-two-caption: [图文页：适合“左文右图”或“左图右文”的方案说明。],
-  image-three: demo-image,
-  image-three-caption: [三图页：适合展示三组成果、三类模块或三个阶段。],
+  top-content: [一句话结论：先把任务和配置写清楚，再让页面内容围绕这些约束展开。],
+  content-text-size: 0.9em,
+  content-text-leading: 0.72em,
+  content: [
+    推荐把一次生成过程拆成四个可检查步骤：
+
+    - 写 `task.md`：说明主题、场景、目标受众、约束和最终验收标准。
+    - 写 `config.md`：固定标题、作者、日期、章节名、素材来源和页面偏好。
+    - 改 `main.typ`：按目录顺序调用页面组件，先完成结构，再逐页补正文。
+    - 编译 `main.pdf`：运行 `typst compile main.typ`，用输出文件检查实际版面。
+    - 复核低密度：如果页面只有少量文字或占位图，应继续补充内容或换页型。
+
+    这条路径的价值是把“口头需求”转成可追踪文件，方便后续继续迭代。
+
+    #bottom-grid(
+      [输入文件],
+      [
+        - `task.md` 锚定任务边界
+        - `config.md` 固定内容参数
+      ],
+      [验证动作],
+      [
+        - 编译生成 `main.pdf`
+        - 抽查正文页密度
+      ],
+    )
+  ],
+)
+
+#subject-text-image-page(
+  demo-image,
+  title: [编译与检查闭环],
+  header-left-offset: 10em,
+  text-width: 1.25fr,
+  image-width: 0.75fr,
+  image-max-height: 68%,
+  top-content: [一句话结论：编译成功只说明语法正确，渲染抽查才能发现空页和视觉低密度。],
+  image-caption: [图 2. 占位图不能替代正文信息。],
   text-body: [
-    选页的原则很简单：纯信息密集型内容优先用正文页，需要讲解图示时用图文页，要并列展示多个结果时用三图页。先按内容组织页面，再决定是否扩展样式，通常能得到更稳定的成稿效果。
+    每轮修改后至少完成这些检查：
+
+    - 运行 `typst compile main.typ`，确认 PDF 能正常生成。
+    - 用 `pdfinfo main.pdf` 查看页数，核对是否符合 `config.md`。
+    - 抽查内容页截图，确认文字没有只停留在页面左上角。
+    - 检查过渡页比例，避免章节页多于实质内容页。
+    - 对占位图保持克制：没有信息量的图片应缩小，正文要补足。
   ],
 )
 
@@ -148,31 +253,80 @@
   marker: [PART],
   left-card-dy: 1.5em,
   right-card-dy: 1.5em,
-  title: [构建导出与协作],
-  description: [完成内容替换后，最后只需要导出 PDF，并在需要时借助 `task.md` 和 `config.md` 与 AI 协作。],
+  title: [协作交付],
+  description: [让 AI 修改、人工审阅和 PDF 交付形成闭环，降低模板维护成本。],
 )
 
 #subject-content-page(
-  title: [导出方式与 AI 协作建议],
+  title: [AI Skill 协作],
   header-left-offset: 10em,
-  top-content: [一句话结论：日常导出只需要一条 Typst 命令；如果你希望 AI 稳定修改模板，优先把任务要求写进 `task.md` 和 `config.md`。],
+  top-content: [一句话结论：Skill 应约束 Agent 读文件、选页型、编译验证和报告版面风险。],
+  content-text-size: 0.9em,
+  content-text-leading: 0.72em,
   content: [
-    实际使用时，建议把“构建”和“协作”分开理解：
+    使用 `pkusli-slides` 时，Agent 的工作边界应当明确：
 
-    - 导出 PDF：在项目根目录执行 `typst compile main.typ`，默认会生成或覆盖 `main.pdf`。
-    - 指定输出：如果你想显式指定文件名，也可以执行 `typst compile main.typ main.pdf`。
-    - AI 协作：先写 `task.md` 说明目标、背景、约束和验收标准，再写 `config.md` 提供标题、目录、正文和图片配置。
-    - `ulw` 模式：如果你还没准备好这两个文件，可以像这次一样先给出需求，让 AI 逐步追问并代为生成。
+    - 先读 `README.md`、`task.md`、`config.md`、`main.typ`，再决定是否追问。
+    - 生成正文前读布局规则，把页数、图注、文字密度和页面类型一起考虑。
+    - 默认只改内容入口，不轻易修改 `slides/`、`style/` 和 `figures/`。
+    - 内容不足时主动补充例子、风险、检查项和下一步，而不是留下空白页。
+    - 最终报告必须说明编译结果、PDF 路径、视觉假设和剩余版面风险。
 
-    这样做的核心价值是减少反复沟通，让模板修改更可控，也更接近“按配置产出内容”的工作流。
+    这能让演示稿从“能编译”升级到“可审阅、可交付、可继续维护”。
+
+    #bottom-grid(
+      [Agent 边界],
+      [
+        - 默认不改主题内部
+        - 缺信息时集中追问
+      ],
+      [交付输出],
+      [
+        - 报告编译与 PDF 路径
+        - 说明版面剩余风险
+      ],
+    )
+  ],
+)
+
+#subject-content-page(
+  title: [交付检查清单],
+  header-left-offset: 10em,
+  top-content: [一句话结论：最终交付前要同时检查结构完整、内容密度、素材可信和编译结果。],
+  content-text-size: 0.9em,
+  content-text-leading: 0.72em,
+  content: [
+    推荐在提交或分享 PDF 前逐项确认：
+
+    - 结构完整：封面、目录、章节过渡、正文、参考文献和结束页均存在。
+    - 内容充分：每个正文页都有一个明确观点，并配有例子、约束或行动项。
+    - 视觉平衡：主要文字区域没有大片空白，图片区域不只是低信息量占位。
+    - 构建可靠：`typst compile main.typ` 成功，`main.pdf` 页数和配置一致。
+    - 人工复核：模板可保证版式起点，事实准确性和表达取舍仍需人工确认。
+
+    如果任一项不满足，应先调整内容和页面类型，再考虑是否修改底层样式。
+
+    #bottom-grid(
+      [通过标准],
+      [
+        - PDF 页数与配置一致
+        - 内容页下半区有信息
+      ],
+      [返工触发],
+      [
+        - 占位图成为主体
+        - 一页承载多个主旨
+      ],
+    )
   ],
 )
 
 #references-manual-page(
   entries: (
-    [Touying package documentation. Typst Universe. 用于说明本模板所基于的演示框架与调用方式。],
-    [Typst documentation. Typst 官方文档. 用于说明 `typst compile` 构建方式和 Typst 文档编写基础。],
-    [项目仓库 `README.md`. 用于说明仓库结构、模板页面类型、`ulw` 模式和推荐协作流程。],
+    [Touying package documentation. Typst Universe. 用于说明本模板所基于的演示框架。],
+    [Typst documentation. Typst 官方文档. 用于说明 `typst compile` 构建方式。],
+    [项目 `README.md`. 用于说明仓库入口、AI Agent 快速使用方式和示例提示。],
+    [项目页面模板说明. 用于说明组件参数、适用场景和常见改动入口。],
   ),
 )
 

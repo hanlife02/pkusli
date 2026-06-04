@@ -18,8 +18,9 @@ Use this skill to turn a short presentation request into a compiled `pkusli` Typ
 7. Do not edit `slides/`, `style/`, or `figures/` unless the user explicitly asks for new page components, theme changes, or asset changes.
 8. Apply the layout rules while choosing page types, agenda count, text length, image sizing, and captions.
 9. After editing, run `typst compile main.typ`.
-10. If compilation fails, fix the error once and recompile. If it still fails, report the exact blocker.
-11. Final response: summarize changed files, compile result, output PDF path, layout assumptions, and any remaining overflow, underfill, or missing-asset risk.
+10. If compilation succeeds and PDF rendering tools are available, render or visually inspect representative PDF pages before finalizing.
+11. If compilation fails, fix the error once and recompile. If it still fails, report the exact blocker.
+12. Final response: summarize changed files, compile result, output PDF path, layout assumptions, and any remaining overflow, underfill, or missing-asset risk.
 
 ## One-Batch Questions
 
@@ -54,6 +55,10 @@ When the input is too vague to produce a useful deck, ask this compact set and a
 - Preserve a complete deck shape: cover, agenda, section transitions, content pages, optional references, and end page.
 - Prefer splitting dense content into more slides over shrinking font sizes.
 - Avoid underfilled pages; if a content page has only a title plus one short sentence or one bullet, add useful detail, merge it, or change the page type.
+- Treat minimum bullet counts as necessary but not sufficient; if rendered content visibly occupies only a small corner or thin band of a content page, add concrete examples, constraints, checks, or another content page.
+- Apply the bottom-half rule: if a rendered content page leaves the lower 35-40% of the main body as only background or empty card space, the page fails even when bullet counts pass.
+- Repair bottom-half failures by adding a second information zone, such as a bottom takeaway, two-column comparison, checklist, example block, constraint/risk block, or by changing to a richer page type.
+- Do not let low-information placeholder images stand in for substantive content. If only a placeholder image is available, reduce its visual role and fill the page with useful text.
 - Add concise captions for image-text and gallery pages.
 - Before the final response, check whether any agenda item, title, summary, body text, image, caption, or low-density page violates `references/layout-rules.md`.
 

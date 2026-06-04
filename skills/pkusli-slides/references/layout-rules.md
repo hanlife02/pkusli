@@ -13,6 +13,7 @@ Use these rules when generating or editing `main.typ`. They are practical layout
 - Short talk: 6-8 slides.
 - Formal defense or complete proposal: 12-18 slides.
 - Preserve this shape unless the user asks otherwise: cover, agenda, transition pages, content pages, optional references, end page.
+- For normal decks, substantive content pages should outnumber transition pages. Avoid decks where cover, agenda, transitions, references, and end pages dominate the PDF.
 
 ## Text Density
 
@@ -25,6 +26,7 @@ Use these rules when generating or editing `main.typ`. They are practical layout
 - Avoid underfilled slides. A normal content slide should not contain only a title plus one short sentence.
 - If a generated slide looks sparse, add concrete examples, implications, next actions, or a second supporting block before accepting it.
 - Do not put explanation paragraphs in captions.
+- Minimum counts are lower bounds, not final acceptance. A page can still fail if rendered content occupies only a small corner or narrow band of the available content area.
 
 ## Minimum Content Density
 
@@ -36,12 +38,23 @@ Use these lower bounds to avoid pages with large empty areas:
 - `transition-page`: one short title plus a 24-48 Chinese character `description`; do not leave description empty.
 - `references-manual-page`: at least 2 entries when shown.
 
+Visual density expectations:
+
+- `subject-content-page`: content should visually fill the body area, not sit only in the upper-left corner. The lower 35-40% of the body must contain information, not just background or empty card space.
+- For `subject-content-page`, prefer one of these filled structures:
+  - 2 short paragraphs plus 4-5 developed bullets.
+  - 4-5 bullets plus a bottom takeaway, implication, or action block.
+  - Two compact columns, such as "适用场景 / 修改入口", "优势 / 注意事项", or "问题 / 修复方式".
+- `subject-text-image-page`: if the image is only a placeholder, keep it secondary and make the text column carry the useful information.
+- `subject-triple-gallery-page`: when real images are unavailable, use text/content cards or richer captions instead of repeating low-information placeholder images.
+
 If a page falls below these lower bounds, do one of the following before finalizing:
 
 1. Add useful concrete details that support the slide's main idea.
 2. Merge it with an adjacent page covering the same section.
 3. Convert the page to a better-fitting template, such as from `subject-content-page` to `subject-text-image-page`.
 4. Remove the page if it does not add a distinct idea.
+5. Add another substantive content page in the same section if transition pages are dominating the deck.
 
 ## Page-Specific Rules
 
@@ -121,6 +134,7 @@ Bad:
 - Keep gallery images similar in aspect ratio and visual weight.
 - Do not edit image files unless the user asks.
 - Tune only page parameters by default: `image-width`, `text-width`, `image-max-width`, `image-max-height`, `swap-sides`, `image-height`.
+- Reusing `figures/background.png` is acceptable for preview, but it must not be treated as evidence or substantive visual content.
 
 ## Overflow Handling
 
@@ -139,13 +153,29 @@ Do not solve overflow by shrinking text aggressively, overloading captions, or a
 
 When content is too sparse, apply this order:
 
-1. Add concrete examples, constraints, implications, or next actions.
-2. Add a supporting image with a concise caption when an image would clarify the idea.
-3. Merge the slide with the previous or next slide if they share the same purpose.
-4. Replace a low-density content page with a transition page only when it is purely a section opener.
-5. Report remaining underfill risk in the final response if the user did not provide enough content.
+1. Check the rendered page, not just the source text. If the lower 35-40% of a content page has no information-bearing text, image, table, or content card, treat it as underfilled.
+2. Add a second information zone near the lower half: bottom takeaway, checklist, example, constraint, risk, next action, or two-column comparison.
+3. Increase information density through content, not font-size tricks. Prefer developed bullets, short supporting paragraphs, or a second compact block.
+4. Add a supporting image with a concise caption only when it carries information. Placeholder images do not count as filling the page.
+5. Merge the slide with the previous or next slide if they share the same purpose.
+6. Replace a low-density content page with a richer page type, such as text-image or triple-gallery with text cards.
+7. Report remaining underfill risk in the final response if the user did not provide enough content.
 
-Do not leave content pages with only one bullet, only one short sentence, or an empty-looking image area.
+Do not leave content pages with only one bullet, only one short sentence, an empty-looking image area, or a visibly empty lower half.
+
+After compiling, render or inspect representative PDF pages when possible. If a content page still shows large blank areas despite meeting the bullet-count rules, revise the content or page type before finalizing.
+
+## Filled Content Patterns
+
+Use these patterns when a normal text page would leave the bottom half empty:
+
+- "观点 + 证据 + 行动": one conclusion sentence, 3 evidence bullets, then a bottom action/checklist block.
+- "分工双栏": two columns comparing files, roles, risks, or decisions; each column should have 2-3 short bullets.
+- "问题修复": top explains the problem, bottom lists specific repairs or acceptance checks.
+- "示例驱动": top gives the rule, bottom gives a concrete example, command, or expected output.
+- "图文降权": when the only image is `figures/background.png`, use a smaller image area and make text carry at least five concrete points.
+
+Avoid a page whose only content is a title, one summary card, and a short list near the upper-left.
 
 ## Validation Prompt
 
@@ -162,8 +192,11 @@ The generated deck should pass these checks:
 - `top-content` entries are one concise conclusion sentence.
 - Content pages use 3-5 bullets or short paragraphs.
 - Content pages are not underfilled; no page has only a title plus one short sentence.
+- Rendered content pages do not leave the main body area mostly empty.
+- Rendered content pages do not leave the lower 35-40% as only background or empty card space.
 - Image-text pages have exactly one main image and a concise caption.
 - Image-text pages have at least 3 bullets or equivalent explanatory text.
+- Placeholder images are not used as the main source of information.
 - Triple-gallery pages have exactly 3 comparable objects.
 - Triple-gallery pages have 3 captions and a meaningful bottom summary.
 - Captions describe image content instead of explaining the whole argument.
